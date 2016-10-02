@@ -1,5 +1,5 @@
 <ul ng-if='!itemsList.displayError'>
-  <li ng-repeat='item in itemsList.matchedItems'>
+  <li ng-repeat='item in itemsList.items'>
       <strong>Name: {{item.name}} - Short name: {{item.short_name}}</strong>
       {{item.description}}
       <button ng-click="itemsList.onRemove({index: $index});">Remove Item</button>
