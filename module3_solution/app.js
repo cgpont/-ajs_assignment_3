@@ -12,7 +12,7 @@ function FoundItemsDirective() {
     restrict: 'E',
     templateUrl: 'foundItemsList.html',
     scope: {
-      foundItems: '<',
+      matchedItems: '<',
       onRemove: '&',
       displayError: '<'
     },
@@ -27,7 +27,7 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var controller = this;
   controller.searchTerm = '';
-  controller.foundItems = [];
+  controller.matchedItems = [];
   controller.displayError = false;
   controller.narrowItDown = function(){
       var promise = MenuSearchService.getMatchedMenuItems(controller.searchTerm);
@@ -35,7 +35,7 @@ function NarrowItDownController(MenuSearchService) {
         if (response.length == 0){
           controller.displayError = true;
         } else {
-          controller.foundItems = response;
+          controller.matchedItems = response;
           controller.displayError = false;
         }
       })
@@ -45,7 +45,7 @@ function NarrowItDownController(MenuSearchService) {
       })
   };
   controller.removeItem = function(index){
-      controller.foundItems.splice(index, 1)
+      controller.matchedItems.splice(index, 1)
   };
 }
 
