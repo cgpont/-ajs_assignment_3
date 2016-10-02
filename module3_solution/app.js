@@ -61,10 +61,12 @@ function MenuSearchService($http, ApiUrl){
           // process result and only keep items that match
           var allMenuItemsObtained = result.data.menu_items;
           var matchedMenuItemsList = [];
-          for (var i=0; i<allMenuItemsObtained.length; i++){
-              if(allMenuItemsObtained[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1){
-                  matchedMenuItemsList.push(allMenuItemsObtained[i]);
-              }
+          if (searchTerm.length > 0){
+            for (var i=0; i<allMenuItemsObtained.length; i++){
+                if(allMenuItemsObtained[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1){
+                    matchedMenuItemsList.push(allMenuItemsObtained[i]);
+                }
+            }
           }
           // return processed items
           return matchedMenuItemsList;
