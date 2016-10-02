@@ -1,0 +1,8 @@
+<ul ng-if='!itemsList.displayError'>
+  <li ng-repeat='item in itemsList.items'>
+      <strong>Name: {{item.name}} - Short name: {{item.short_name}}</strong>
+      {{item.description}}
+      <button ng-click="list.onRemove({index: $index});">Remove Item</button>
+  </li>
+</ul>
+<div ng-if='itemsList.displayError' class='error'>Sorry! We couldn't find that :(</div>
