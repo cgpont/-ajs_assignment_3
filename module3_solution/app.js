@@ -31,7 +31,7 @@ function NarrowItDownController(MenuSearchService) {
   controller.displayError = false;
   controller.narrowItDown = function(){
       var promise = MenuSearchService.getMatchedMenuItems(controller.searchTerm);
-      promise.then(function (response) {
+      promise.then(function(response){
         if (response.length == 0){
           controller.displayError = true;
         } else {
@@ -53,26 +53,25 @@ MenuSearchService.$inject = ['$http', 'ApiUrl', '$filter'];
 function MenuSearchService($http, ApiUrl){
   var service = this;
   service.getMatchedMenuItems = function(searchTerm){
-    var matchedMenuItemsList = $http({
+    return $http({
         method: "GET",
         url: (ApiUrl)
       })
       .then(function(result){
           // process result and only keep items that match
           var allMenuItemsObtained = result.data.menu_items;
-          var matchedItems = [];
+          var matchedMenuItemsList = [];
           for (var i=0; i<allMenuItemsObtained.length; i++){
               if(allMenuItemsObtained[i].description.toLowerCase().indexOf(searchTerm.toLowerCase()) != -1){
-                  matchedItems.push(allMenuItemsObtained[i]);
+                  matchedMenuItemsList.push(allMenuItemsObtained[i]);
               }
           }
           // return processed items
-          return matchedItems;
+          return matchedMenuItemsList;
       })
       .catch(function(error) {
           console.log('There was an error: ' + error);
       });
-      return matchedMenuItemsList;
     };
 }
 
