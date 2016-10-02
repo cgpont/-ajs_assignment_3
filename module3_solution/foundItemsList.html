@@ -2,7 +2,7 @@
   <li ng-repeat='item in itemsList.items'>
       <strong>Name: {{item.name}} - Short name: {{item.short_name}}</strong>
       {{item.description}}
-      <button ng-click="itemsList.onRemove({index: $index});">Don't want this one!</button>
+      <button class="narrow-button" ng-click="itemsList.onRemove({index: $index});">Don't want this one!</button>
   </li>
 </ul>
 <div ng-if='itemsList.displayError'><br><br><strong><em>Sorry! We couldn't find that :(</strong></em></div>
