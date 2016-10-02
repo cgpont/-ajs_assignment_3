@@ -20,6 +20,7 @@ function FoundItemsDirective() {
     controllerAs: 'itemsList',
     bindToController: true,
   };
+  console.log(ddo);
   return ddo;
 }
 
